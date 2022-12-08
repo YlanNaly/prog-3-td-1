@@ -13,8 +13,4 @@ public class PutBook {
   private Integer id;
   private String title ;
   private String author;
-
-  public boolean hasAuthor() {
-    return author != null;
-  }
 }
