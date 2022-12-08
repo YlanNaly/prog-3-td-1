@@ -12,8 +12,4 @@ import lombok.NoArgsConstructor;
 public class CreateBook {
   private String title;
   private String author;
-  public boolean hasAuthor() {
-    return author != null;
-  }
-
 }
