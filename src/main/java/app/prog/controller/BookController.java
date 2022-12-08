@@ -1,6 +1,7 @@
 package app.prog.controller;
 
 import app.prog.controller.mapper.BookRestMapper;
+import app.prog.controller.mapper.PostBook;
 import app.prog.controller.response.BookResponse;
 import app.prog.model.Book;
 import app.prog.service.BookService;
@@ -24,9 +25,9 @@ public class BookController {
 
     //TODO: This endpoint does not match with our API. Resolve it in the question-1.
     @PostMapping("/books")
-    public List<BookResponse> createBooks(@RequestBody List<Book> toCreate) {
-        return service.createBooks(toCreate).stream()
-                .map(mapper::toRest)
+    public List<BookResponse> createBooks(@RequestBody List<PostBook> toCreate) {
+        return service.createBooks(mapper.toDomain(toCreate)).stream()
+                .map(mapper::toRestBookResponse)
                 .toList();
     }
 
