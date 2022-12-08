@@ -20,7 +20,7 @@ public class Book {
     TODO-4-b: Should I map it with int ? Fix it if there is a problem
      */
     @Id
-    private int id;
+    private Integer id;
     private String title;
     private String author;
     private Integer pageNumber;
