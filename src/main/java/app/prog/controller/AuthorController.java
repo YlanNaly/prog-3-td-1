@@ -30,27 +30,34 @@ public class AuthorController {
   private final AuthorService authorService;
   private AuthorRestMapper mapper;
   @GetMapping
-  public List<AuthorResponse> getAll(){
-    return authorService.getAuthors().stream()
+  public List<AuthorResponse> getAll(@RequestParam int page ,
+                                     @RequestParam int pagesize){
+    return authorService.getAuthors(page, pagesize).stream()
             .map(mapper::toRest)
             .toList();
   }
   @PostMapping
-  public List<AuthorResponse> createAuthor(@RequestBody List<CreateAuthorResponse> createAuthorResponse){
+  public List<AuthorResponse> createAuthor(
+          @RequestParam int page ,
+          @RequestParam int pagesize,
+          @RequestBody List<CreateAuthorResponse> createAuthorResponse){
     authorService.createAuthor(mapper.toDomainPost(createAuthorResponse)).stream()
             .map(mapper::toRest)
             .toList();
-    return authorService.getAuthors().stream()
+    return authorService.getAuthors(page , pagesize).stream()
             .map(mapper::toRest)
             .toList();
   }
 
   @PutMapping
-  public List<AuthorResponse> updateAuthor(@RequestBody List<UpdateAuthorResponse> updateAuthorResponse){
+  public List<AuthorResponse> updateAuthor(
+          @RequestParam int page ,
+          @RequestParam int pagesize,
+          @RequestBody List<UpdateAuthorResponse> updateAuthorResponse){
     authorService.updateAuthor(mapper.toDomain(updateAuthorResponse)).stream()
             .map(mapper::toRest)
             .toList();
-    return authorService.getAuthors().stream()
+    return authorService.getAuthors(page , pagesize).stream()
             .map(mapper::toRest)
             .toList();
   }

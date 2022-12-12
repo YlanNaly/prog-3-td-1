@@ -5,6 +5,9 @@ import app.prog.model.BookEntity;
 import app.prog.repository.AuthorRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,8 +20,9 @@ import java.util.Optional;
 @Data
 public class AuthorService {
     private final AuthorRepository repository;
-    public List<AuthorEntity> getAuthors(){
-      return repository.findAll();
+    public List<AuthorEntity> getAuthors(int pageNumber , int pageSize){
+       Pageable request = PageRequest.of(pageNumber , pageSize, Sort.Direction.DESC, "birthDate");
+        return repository.findAll(request).toList();
     }
 
     public List<AuthorEntity> createAuthor(List<AuthorEntity> authorEntityList){
