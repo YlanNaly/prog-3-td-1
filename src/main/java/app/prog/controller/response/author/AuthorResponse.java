@@ -11,5 +11,5 @@ public class AuthorResponse {
   private String name;
   private String particularity;
   private Integer id;
-  private boolean hasParticularity;
+  private boolean hasParticularity ;
 }

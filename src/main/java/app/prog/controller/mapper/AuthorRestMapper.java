@@ -8,17 +8,20 @@ import app.prog.repository.AuthorRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @AllArgsConstructor
 @Data
+@Component
 @Builder
 public class AuthorRestMapper {
   private final AuthorRepository repository;
 
   public AuthorResponse toRest(AuthorEntity rest) {
     return AuthorResponse.builder()
+            .id(rest.getId())
             .hasParticularity(rest.getParticularity().isEmpty())
             .name(rest.getName())
             .particularity(rest.getParticularity())

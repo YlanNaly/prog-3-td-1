@@ -1,4 +1,4 @@
-create table book
+create table author
 (
     id     serial,
     name varchar,
