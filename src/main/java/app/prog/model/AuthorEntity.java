@@ -10,6 +10,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "author")
 @Data
@@ -23,6 +25,7 @@ public class AuthorEntity {
   private String name;
   private String particularity;
 
+  private LocalDate birthDate;
   private boolean hasParticularity()
   {
     return particularity != null;

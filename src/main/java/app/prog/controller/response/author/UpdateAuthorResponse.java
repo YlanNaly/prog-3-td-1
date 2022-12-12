@@ -8,4 +8,7 @@ import lombok.Data;
 @Data
 @Builder
 public class UpdateAuthorResponse {
+  private String name;
+  private String particularity;
+  private Integer id;
 }
