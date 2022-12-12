@@ -10,24 +10,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "author")
+@Table(name = "category")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthorEntity {
+public class CategoryEntity implements Serializable {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
   private String name;
-  private String particularity;
-
-  private LocalDate birthDate;
-  public boolean hasParticularity()
-  {
-    return particularity != null;
-  }
 }

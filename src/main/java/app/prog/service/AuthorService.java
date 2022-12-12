@@ -32,7 +32,6 @@ public class AuthorService {
     public List<AuthorEntity> updateAuthor(List<AuthorEntity> authorEntityList){
         return repository.saveAll(authorEntityList);
     }
-
     public AuthorEntity deleteAuthor(int authorId) {
 
         Optional<AuthorEntity> optional = repository.findById(authorId);
@@ -44,4 +43,7 @@ public class AuthorService {
         }
     }
 
+    public AuthorEntity getByName(String name){
+        return repository.getByName(name);
+    }
 }

@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "book")
@@ -17,9 +19,20 @@ import java.time.LocalDate;
 public class BookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
     private String title;
-    private String author;
+
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @JoinColumn(name = "author")
+    private AuthorEntity author;
+/**
+    @OneToMany
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @JoinColumn(name = "category")
+    private List<CategoryEntity> category;
+*/
     private Integer pageNumber;
     private LocalDate releaseDate;
 
