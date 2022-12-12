@@ -1,4 +1,4 @@
-package app.prog.controller.response;
+package app.prog.controller.response.book;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
