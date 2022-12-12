@@ -22,7 +22,7 @@ public class AuthorRestMapper {
   public AuthorResponse toRest(AuthorEntity rest) {
     return AuthorResponse.builder()
             .id(rest.getId())
-            .hasParticularity(rest.getParticularity().isEmpty())
+            .hasParticularity(rest.hasParticularity())
             .name(rest.getName())
             .particularity(rest.getParticularity())
             .build();
@@ -38,7 +38,9 @@ public class AuthorRestMapper {
   }
 
   public AuthorEntity toRest(UpdateAuthorResponse rest) {
+    AuthorEntity author = repository.getById(rest.getId());
     return AuthorEntity.builder()
+            .id(author.getId())
             .name(rest.getName())
             .particularity(rest.getParticularity())
             .build();

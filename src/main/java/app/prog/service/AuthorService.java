@@ -5,7 +5,9 @@ import app.prog.model.BookEntity;
 import app.prog.repository.AuthorRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +36,7 @@ public class AuthorService {
             repository.delete(optional.get());
             return optional.get();
         } else {
-            throw new RuntimeException("BookEntity." + authorId + " not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"AuthorId " + authorId + " not found");
         }
     }
 

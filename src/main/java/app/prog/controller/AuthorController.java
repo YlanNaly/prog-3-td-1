@@ -11,6 +11,7 @@ import lombok.Data;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,7 +47,7 @@ public class AuthorController {
 
   @PutMapping
   public List<AuthorResponse> updateAuthor(@RequestBody List<UpdateAuthorResponse> updateAuthorResponse){
-    authorService.createAuthor(mapper.toDomain(updateAuthorResponse)).stream()
+    authorService.updateAuthor(mapper.toDomain(updateAuthorResponse)).stream()
             .map(mapper::toRest)
             .toList();
     return authorService.getAuthors().stream()
@@ -55,10 +56,7 @@ public class AuthorController {
   }
 
   @DeleteMapping("/{authorId}")
-  public List<AuthorResponse> deleteAuthor(@RequestParam Integer id){
-    authorService.deleteAuthor(id);
-    return authorService.getAuthors().stream()
-            .map(mapper::toRest)
-            .toList();
+  public AuthorResponse deleteAuthor(@PathVariable Integer authorId){
+    return mapper.toRest(authorService.deleteAuthor(authorId));
   }
 }

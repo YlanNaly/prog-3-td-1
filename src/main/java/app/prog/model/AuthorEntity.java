@@ -26,7 +26,7 @@ public class AuthorEntity {
   private String particularity;
 
   private LocalDate birthDate;
-  private boolean hasParticularity()
+  public boolean hasParticularity()
   {
     return particularity != null;
   }
