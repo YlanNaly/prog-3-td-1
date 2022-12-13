@@ -26,7 +26,7 @@ public class BookService {
     }
 
     //TODO-3: should I use Integer here or int ? Why ?
-    public BookEntity deleteBook(int BookEntityId) {
+    public BookEntity deleteBook(Integer id) {
         /*
         TIPS: From the API, the Class Optional<T> is :
         A container object which may or may not contain a non-null value.
@@ -35,7 +35,7 @@ public class BookService {
 
         T is the type of the value, for example : here the class type is BookEntity
          */
-        Optional<BookEntity> optional = repository.findById(String.valueOf(BookEntityId));
+        Optional<BookEntity> optional = repository.findById(id);
         if (optional.isPresent()) {
             repository.delete(optional.get());
             return optional.get();
@@ -48,7 +48,7 @@ public class BookService {
         Link 1 : https://www.baeldung.com/spring-response-entity
         Link 2 : https://www.baeldung.com/exception-handling-for-rest-with-spring
          */
-            throw new RuntimeException("BookEntity." + BookEntityId + " not found");
+            throw new RuntimeException("BookEntity." + id + " not found");
         }
     }
 }
