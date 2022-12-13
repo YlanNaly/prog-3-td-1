@@ -5,7 +5,6 @@ import app.prog.controller.response.book.CreateBookResponse;
 import app.prog.controller.response.book.UpdateBookResponse;
 import app.prog.model.AuthorEntity;
 import app.prog.model.BookEntity;
-import app.prog.repository.AuthorRepository;
 import app.prog.service.AuthorService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class BookRestMapper {
-
     private final AuthorService authorService;
     public BookResponse toRest(BookEntity domain) {
         AuthorEntity entity = authorService.getById(domain.getAuthor().getId());
@@ -27,17 +25,18 @@ public class BookRestMapper {
 
     public BookEntity toDomain(CreateBookResponse rest) {
         return BookEntity.builder()
-                /* .author(domain.getAuthor()*/
                 .title(rest.getTitle())
+                /*  .category(domain.getCategory())*/
                 .pageNumber(0) //Constraint not null in database, default value is 0
                 .build();
     }
 
     public BookEntity toDomain(UpdateBookResponse rest) {
+      /*
+        List<CategoryEntity> categoryEntities = repository.getById(String.valueOf(rest.getId())).getCategory();*/
         return BookEntity.builder()
                 .id(rest.getId())
                 /* .author(domain.getAuthor()*/
-
                 .title(rest.getTitle())
                 .pageNumber(0) //Constraint not null in database, default value is 0
                 .build();

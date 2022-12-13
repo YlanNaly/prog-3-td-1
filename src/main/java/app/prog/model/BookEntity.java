@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "book")
@@ -18,6 +19,7 @@ import java.time.LocalDate;
 public class BookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
     private String title;
     @ManyToOne

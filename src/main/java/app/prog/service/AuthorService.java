@@ -1,7 +1,6 @@
 package app.prog.service;
 
 import app.prog.model.AuthorEntity;
-import app.prog.model.BookEntity;
 import app.prog.repository.AuthorRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,16 +19,17 @@ import java.util.Optional;
 @Data
 public class AuthorService {
     private final AuthorRepository repository;
-    public List<AuthorEntity> getAuthors(int pageNumber , int pageSize){
-       Pageable request = PageRequest.of(pageNumber , pageSize, Sort.Direction.DESC, "birthDate");
+
+    public List<AuthorEntity> getAuthors(int pageNumber, int pageSize) {
+        Pageable request = PageRequest.of(pageNumber, pageSize, Sort.Direction.DESC, "birthDate");
         return repository.findAll(request).toList();
     }
 
-    public List<AuthorEntity> createAuthor(List<AuthorEntity> authorEntityList){
-      return repository.saveAll(authorEntityList);
+    public List<AuthorEntity> createAuthor(List<AuthorEntity> authorEntityList) {
+        return repository.saveAll(authorEntityList);
     }
 
-    public List<AuthorEntity> updateAuthor(List<AuthorEntity> authorEntityList){
+    public List<AuthorEntity> updateAuthor(List<AuthorEntity> authorEntityList) {
         return repository.saveAll(authorEntityList);
     }
 
@@ -40,10 +40,11 @@ public class AuthorService {
             repository.delete(optional.get());
             return optional.get();
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"AuthorId " + authorId + " not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "AuthorId " + authorId + " not found");
         }
     }
-    public AuthorEntity getById(int id){
+
+    public AuthorEntity getById(int id) {
         return repository.getById(id);
     }
 }
