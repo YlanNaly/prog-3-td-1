@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDate;
 
@@ -19,7 +20,10 @@ public class BookEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
-    private String author;
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @JoinColumn(name = "author")
+    private AuthorEntity author;
     private Integer pageNumber;
     private LocalDate releaseDate;
 

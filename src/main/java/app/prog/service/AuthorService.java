@@ -43,5 +43,7 @@ public class AuthorService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"AuthorId " + authorId + " not found");
         }
     }
-
+    public AuthorEntity getById(int id){
+        return repository.getById(id);
+    }
 }
